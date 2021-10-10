@@ -13,15 +13,13 @@ jobs:
     - uses: actions/checkout@v2
     - name: Download the linux repository
       id: download
-      run: wget -o archive.zip https://github.com/Simi7/linux/archive/${{ github.sha }}.zip --verbose
-    - name: Unzip
-      id: unzip
-      run: unzip archive.zip
-      #run: unzip linux-${{ github.sha }}.zip
+      run: | 
+        wget -o archive.zip https://github.com/Simi7/linux/archive/${{ github.sha }}.zip --verbose
+        unzip archive.zip
     - name: Build the unzipped source code
       id: build
       run: ./build-linux.sh linux-${{ github.sha }} tinyconfig
     - name: Check on failures
-      if: steps.download.outcome != 'success' || steps.unzip.outcome != 'success' || steps.build.outcome != 'success'
+      if: steps.download.outcome != 'success' || steps.build.outcome != 'success'
       run: exit 1
 
