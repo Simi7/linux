@@ -12,8 +12,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Download and unzip the linux repository
       id: download
-      run: cd scripts/linux
-           wget https://github.com/Simi7/linux/archive/${GITHUB_SHA}.zip
+      run: wget https://github.com/Simi7/linux/archive/${GITHUB_SHA}.zip
            unzip linux-${GITHUB_SHA}.zip 
     - name: Build the unzipped source code
       id: build
