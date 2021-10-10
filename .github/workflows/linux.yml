@@ -6,7 +6,6 @@ on:
 
 jobs:
   runMultipleCommands:
-    #build:
 
     runs-on: ubuntu-latest
     steps:
@@ -20,7 +19,7 @@ jobs:
     - name: Build the unzipped source code
       id: build
       run: |
-        ./build-linux.sh ${{ github.sha }}  tinyconfig
+        ../build-linux.sh ${{ github.sha }}  tinyconfig
     - name: Check on failures
       if: steps.download.outcome != 'success' || steps.unzip.outcome != 'success' || steps.build.outcome != 'success'
       run: exit 1
