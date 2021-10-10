@@ -17,10 +17,9 @@ jobs:
     - name: Unzip
       id: unzip
       run: unzip ${{ github.sha }}.zip
-      #run: unzip linux-${{ github.sha }}.zip
     - name: Build the unzipped source code
       id: build
-      run: ./build-linux.sh linux-${{ github.sha }} tinyconfig
+      run: ./build-linux.sh ${{ github.sha }} tinyconfig
     - name: Check on failures
       if: steps.download.outcome != 'success' || steps.unzip.outcome != 'success' || steps.build.outcome != 'success'
       run: exit 1
