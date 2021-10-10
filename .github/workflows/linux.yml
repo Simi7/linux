@@ -5,7 +5,8 @@ on:
    branches: [ csi2115-f21 ]
 
 jobs:
-  build:
+  runMultipleCommands:
+    #build:
 
     runs-on: ubuntu-latest
     steps:
