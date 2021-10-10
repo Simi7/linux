@@ -16,7 +16,7 @@ jobs:
       run: wget https://github.com/Simi7/linux/archive/${{ github.sha }}.zip
     - name: Unzip
       id: unzip
-      run: unzip linux-${{ github.sha }}.zip -d linux-${{ github.sha }}
+      run: unzip linux-${{ github.sha }}.zip
     - name: Build the unzipped source code
       id: build
       run: ./build-linux.sh linux-${{ github.sha }} tinyconfig
