@@ -10,14 +10,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Download and unzip the linux repository
+    - name: Download the linux repository
       id: download
       run: wget https://github.com/Simi7/linux/archive/${{ github.sha }}.zip
-           unzip linux-${{ github.sha }}.zip -d linux-${{ github.sha }}
+    - name: Unzip
+      id: unzip
+      run: unzip linux-${{ github.sha }}.zip -d linux-${{ github.sha }}
     - name: Build the unzipped source code
       id: build
       run: ./build-linux.sh linux-${{ github.sha }} tinyconfig
     - name: Check on failures
-      if: steps.download.outcome != 'success' || steps.build.outcome != 'success'
+      if: steps.download.outcome != 'success' || steps.unzip.outcome != 'success' || steps.build.outcome != 'success'
       run: exit 1
 
